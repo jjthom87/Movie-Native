@@ -2,7 +2,6 @@ var axios = require('axios');
 var Movie = require('./../models/movie')
 
 exports.addMovie = function(req, res, next){
-
 	const MOVIE_URL = 'https://api.themoviedb.org/3/movie/'
 	const API_KEY = 'cf402e45d0e4ac26a616f28b30eeff01';
 
@@ -34,5 +33,25 @@ exports.index = function(req, res, next){
 		} else {
 			res.json(results);		
 		}
+	});
+}
+
+exports.addComment = function(req, res, next){
+	Movie.findByIdAndUpdate(req.body.creds.id,
+		{$push: 
+			{'comments': 
+				{
+					'name': req.body.creds.name, 
+					'text': req.body.creds.comment,
+					'stars': req.body.creds.stars
+				}
+			}
+		}, 
+		function(err, results){
+			if(err){
+				res.json(err)
+			} else {
+				res.json(results)	
+			}
 	});
 }

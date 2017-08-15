@@ -13,7 +13,14 @@ var movieSchema = new Schema({
 	},
 	genre: {
 		type: String
-	}
+	},
+	comments: [
+		{
+			name: {type: String},
+			text: {type: String},
+			stars: {type: Number}
+		}
+	]
 });
 
 module.exports = mongoose.model('movies', movieSchema)
