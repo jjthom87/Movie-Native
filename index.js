@@ -16,7 +16,7 @@ var router = require('./services/router');
 
 mongoose.connect(db, function(err,res){
 	if(err){
-		console.log("Error connection to: " + db + '. ' + err);
+		console.log("Error connecting to: " + db + '. ' + err);
 	} else {
 		console.log("Succeeded connecting to: " + db);
 	}
